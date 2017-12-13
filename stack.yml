@@ -15,7 +15,7 @@
 
   - name: Adding host
     add_host:
-      hostname: "default"
+      hostname: EPPLKRAW0381T1.budapest.epam.com
       ansible_connection: "ssh"
       ansible_host: "{{result.ip}}"
       ansible_port: "{{result.port}}"
@@ -23,7 +23,7 @@
       ansible_ssh_private_key_file: "{{result.key}}"
 
 - name: Tomcat stack
-  hosts: localhost
+  hosts: EPPLKRAW0381T1.budapest.epam.com
  
   roles:
   - java

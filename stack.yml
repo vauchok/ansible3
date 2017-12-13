@@ -1,0 +1,31 @@
+- name : provision VM
+  hosts: localhost
+
+  tasks:
+
+  - name: Using created module
+    vagrant_ssh:
+      path: /home/student/cm/ansible/day-3
+      state: started
+    register: result
+
+  - name: Output
+    debug:
+      msg: "{{result}}"
+
+  - name: Adding host
+    add_host:
+      hostname: "default"
+      ansible_connection: "ssh"
+      ansible_host: "{{result.ip}}"
+      ansible_port: "{{result.port}}"
+      ansible_user: "{{result.username}}"
+      ansible_ssh_private_key_file: "{{result.key}}"
+
+- name: Tomcat stack
+  hosts: localhost
+ 
+  roles:
+  - java
+  - tomcat
+  - nginx
